@@ -697,7 +697,7 @@ static NSString* sDefault_string = @"Double-click to edit this text";
 		NSSize maxsize = [self maxSize];
 		NSSize minsize = [self minSize];
 
-		NSRect br = [self logicalBounds];
+		NSRect br = NSMakeRect(self.logicalBounds.origin.x, self.logicalBounds.origin.y, self.size.width, self.size.height);
 		CGFloat offset = [[self textAdornment] verticalTextOffsetForObject:self];
 
 		br.origin.y += offset;
@@ -720,6 +720,7 @@ static NSString* sDefault_string = @"Double-click to edit this text";
 		[m_editorRef setMinSize:minsize];
 		[m_editorRef setMaxSize:maxsize];
 		[[m_editorRef textContainer] setHeightTracksTextView:NO];
+		[[m_editorRef textContainer] setLineFragmentPadding:0.0];
 		[m_editorRef setVerticallyResizable:YES];
 		[m_editorRef setTypingAttributes:[self textAttributes]];
 	}

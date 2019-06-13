@@ -195,6 +195,8 @@ NSString* const kDKExportedImageRelativeScale = @"kDKExportedImageRelativeScale"
 		= CGBitmapContextCreateImage(bmCtx);
 	pdfView = nil; // removes the controller
 
+	CGContextRelease(bmCtx);
+
 	return (CGImageRef)CFAutorelease(image);
 }
 
@@ -306,7 +308,7 @@ NSString* const kDKExportedImageRelativeScale = @"kDKExportedImageRelativeScale"
 		[tiffInfo setObject:value
 					 forKey:(NSString*)kCGImagePropertyTIFFCompression];
 
-	[tiffInfo setObject:[NSString stringWithFormat:@"DrawKit %@ ©2008 apptree.net, 2017-2018 C.W. \"Madd the Sane\" Betts", [[self class] drawkitVersionString]]
+	[tiffInfo setObject:[NSString stringWithFormat:@"DrawKit %@", [[self class] drawkitVersionString]]
 				 forKey:(NSString*)kCGImagePropertyTIFFSoftware];
 
 	NSString* metaStr;
