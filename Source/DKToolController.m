@@ -79,7 +79,7 @@ static NSMutableDictionary* sDrawingToolDict = nil;
 static DKDrawingTool* sGlobalTool = nil;
 
 #define DK_ENABLE_UNDO_GROUPING 1
-#define DK_ALWAYS_OPEN_UNDO_GROUP 1
+#define DK_ALWAYS_OPEN_UNDO_GROUP 0
 
 @implementation DKToolController
 

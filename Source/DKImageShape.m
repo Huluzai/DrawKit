@@ -909,12 +909,14 @@ NSString* const kDKOriginalNameMetadataKey = @"dk_original_name";
 							  fromView:nil];
 
 		NSPoint offset;
-
-		p = [[self inverseTransform] transformPoint:p];
+		NSAffineTransform *transform = [self transformIncludingParent];
+		[transform invert];
+		
+		p = [transform transformPoint:p];
 
 		p.x = LIMIT(p.x, -0.5, 0.5);
 		p.y = LIMIT(p.y, -0.5, 0.5);
-		[hs setRelativeLocation:p];
+		[self moveHotspot:hs to:p];
 		[self notifyVisualChange];
 
 		offset.x = p.x * [[self image] size].width;

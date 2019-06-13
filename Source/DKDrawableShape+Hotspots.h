@@ -45,6 +45,8 @@ typedef NS_ENUM(NSInteger, DKHotspotState) {
 - (void)drawHotspotAtPoint:(NSPoint)hp inState:(DKHotspotState)state;
 - (void)drawHotspotsInState:(DKHotspotState)state;
 
+- (void)moveHotspot:(DKHotspot *)hs to:(NSPoint)relativeLocation;
+
 @end
 
 enum {

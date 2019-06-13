@@ -568,6 +568,8 @@ static Class s_textEditorClass = Nil;
 	if ([self isTextBeingEdited]) {
 		// track smart quotes setting in prefs. Smart Quotes requires 10.5 or later
 
+		[m_textEditViewRef.undoManager removeAllActionsWithTarget:m_textEditViewRef];
+		
 		if ([m_textEditViewRef respondsToSelector:@selector(isAutomaticQuoteSubstitutionEnabled)])
 			[[NSUserDefaults standardUserDefaults] setBool:[m_textEditViewRef isAutomaticQuoteSubstitutionEnabled]
 													forKey:kDKTextEditorSmartQuotesPrefsKey];
@@ -867,7 +869,7 @@ static Class s_textEditorClass = Nil;
 	if ([[self window] isMainWindow])
 		[[self enclosingScrollView] setBackgroundColor:[[self class] backgroundColour]];
 	else
-		[[self enclosingScrollView] setBackgroundColor:[NSColor veryLightGrey]];
+		[[self enclosingScrollView] setBackgroundColor:[NSColor windowBackgroundColor]];
 
 	[self setNeedsDisplay:YES];
 }

@@ -1777,7 +1777,8 @@ enum {
 	if (![self lockedOrHidden] && [self isSelectionNotEmpty] && ![self isSingleObjectSelected]) {
 		// filter the selection so that objects that refuse grouping are removed:
 
-		NSArray* objects = [DKShapeGroup objectsAvailableForGroupingFromArray:[self selectedAvailableObjects]];
+		Class trueClass = [DKDrawableObject classForConversionRequestFor:[DKShapeGroup class]];
+		NSArray* objects = [trueClass objectsAvailableForGroupingFromArray:[self selectedAvailableObjects]];
 
 		// if there are < 2 remaining, beep and do nothing
 
@@ -1786,7 +1787,7 @@ enum {
 			return;
 		}
 
-		DKShapeGroup* group = [[DKShapeGroup alloc] init];
+		DKShapeGroup* group = [[trueClass alloc] init];
 
 		if ([self shouldGroupObjects:objects
 						   intoGroup:group]) {

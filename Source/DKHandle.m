@@ -106,7 +106,7 @@ static NSMutableDictionary* s_handleInstancesTable = nil;
 
 + (void)setHandleClass:(Class)hClass forType:(DKKnobType)type
 {
-	if ([hClass superclass] != [self class])
+	if (![hClass isSubclassOfClass:[self class]])
 		return;
 
 	if (s_handleClassTable == nil)

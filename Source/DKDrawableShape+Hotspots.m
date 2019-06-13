@@ -109,6 +109,16 @@
 	}
 }
 
+- (void)moveHotspot:(DKHotspot *)hs to:(NSPoint)relativeLocation
+{
+	if (!NSEqualPoints(hs.relativeLocation, relativeLocation)) {
+		[[[self undoManager] prepareWithInvocationTarget:self] moveHotspot:hs to:hs.relativeLocation];
+		[self notifyVisualChange];
+		[hs setRelativeLocation:relativeLocation];
+		[self notifyVisualChange];
+	}
+}
+
 @end
 
 #pragma mark -
@@ -232,9 +242,8 @@
 {
 #pragma unused(zone)
 
-	DKHotspot* copy = [[DKHotspot alloc] init];
+	DKHotspot* copy = [[DKHotspot alloc] initHotspotWithOwner:self.owner partcode:self.partcode delegate:nil];
 	copy.relativeLocation = m_relLoc;
-	copy.partcode = m_partcode;
 
 	return copy;
 }
